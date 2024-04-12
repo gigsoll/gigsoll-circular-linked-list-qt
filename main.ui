@@ -74,9 +74,16 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="pbGenerate">
          <property name="text">
-          <string>Видати білети</string>
+          <string>Згенерувати</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pbGiveTickets">
+         <property name="text">
+          <string>Роздати білети</string>
          </property>
         </widget>
        </item>
