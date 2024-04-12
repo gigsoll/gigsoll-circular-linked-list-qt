@@ -94,28 +94,23 @@ class CircularLinkedList:
             counter += 1
         return nodeData
     
-    def searchByIndex(self, index):
+    def search(self, index, key, way):
         if self.last == None:
             return IndexError("List is empty")
         newNode = self.last.next
         counter = -1
         while newNode:
             counter += 1
-            if counter == index:
-                return newNode.data
+            match way:
+                case "index":
+                    if counter == index:
+                        return newNode.data
+                case "key":
+                    if newNode.data == key:
+                        return counter
+                case "index and key":
+                    if newNode.data == key and counter == index:
+                        return "Знайдено"
             newNode = newNode.next
             if newNode == self.last.next:
-                return f"Елемент з індексом {index} не знайдено"
-    
-    def searchByKey(self, key):
-        if self.last == None:
-            return IndexError("List is empty")
-        newNode = self.last.next
-        counter = -1
-        while newNode:
-            counter += 1
-            if newNode.data == key:
-                return counter
-            newNode = newNode.next
-            if newNode == self.last.next:
-                return f"Елемент з значенням {key} не знайдено"
+                return RuntimeError("Search failed")
