@@ -39,17 +39,19 @@ class Ui(QWidget):
     def GenerateNames(self, length):
         names = ["Андрій", "Ярослав", "Олександр", "Михайло", "Богдан", "Олена", "Катерина", "Марія", "Анна", "Наталія"]
         surnames = ["Шевченко", "Петренко", "Кравчук", "Іваненко", "Коваленко", "Степаненко", "Сидоренко", "Поліщук", "Бордар", "Ткаченко"]
-        students = []
         for i in range(length):
-            students.append(f"{random.choice(names)} {random.choice(surnames)}")
-        return students
+            if i == 0:
+                self.students.addToEmpty(f"{random.choice(names)} {surnames}")
+            else:
+                self.students.addAtEnd(f"{random.choice(names)} {random.choice(surnames)}")
     
     def GenerateTickets(self, length):
-        tickets = []
         for i in range(length):
-            tickets.append(random.randint(1000, 10000))
-        return tickets
-    
+            if i == 0:
+                self.tickets.addToEmpty(random.randint(1000, 10000))
+            else:
+                self.tickets.addAtEnd(random.randint(1000, 10000))
+            
 app = QApplication(sys.argv)
 window = Ui()
 app.exec()
