@@ -10,6 +10,7 @@ class Ui(QWidget):
         super(Ui, self).__init__()
         uic.loadUi('main.ui', self)
         self.show()
+        self.cbList.addItems({"Учні", "Білети"})
 
 app = QApplication(sys.argv)
 window = Ui()
