@@ -72,13 +72,24 @@ class CircularLinkedList:
         return last
 
     def traverse(self):
+        nodeData = []
         if self.last == None:
-            print("The list is empty")
-            return
-
+            return nodeData
         newNode = self.last.next
         while newNode:
-            print(newNode.data, end=" ")
+            nodeData.append(newNode.data)
             newNode = newNode.next
             if newNode == self.last.next:
-                break
+                return nodeData
+    
+    def traverseNumber(self, number):
+        nodeData = []
+        if self.last == None:
+            return nodeData
+        newNode = self.last.next
+        counter = 0
+        while counter < number:
+            nodeData.append(newNode.data)
+            newNode = newNode.next
+            counter += 1
+        return nodeData
