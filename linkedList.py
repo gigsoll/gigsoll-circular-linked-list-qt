@@ -16,13 +16,6 @@ class CircularLinkedList:
         self.last.next = self.last
         return self.last
 
-    def addAtBeginning(self, data):
-        if self.last == None:
-            return self.addToEmpty(data)
-        newNode = Node(data)
-        newNode.next = self.last.next
-        self.last.next = newNode
-        return self.last
 
     def addAtEnd(self, data):
         if self.last == None:
