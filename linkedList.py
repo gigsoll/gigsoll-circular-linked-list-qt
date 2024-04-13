@@ -26,13 +26,15 @@ class CircularLinkedList:
         self.last = newNode
         return self.last
 
-    def addAfter(self, data, item):
+    def addAfter(self, data, index):
         if self.last == None:
-            return None
+            self.addToEmpty(data)
         newNode = Node(data)
         p = self.last.next
+        counter = -1
         while p:
-            if p.data == item:
+            counter += 1
+            if counter == index:
                 newNode.next = p.next
                 p.next = newNode
                 if p == self.last:
@@ -42,8 +44,7 @@ class CircularLinkedList:
                     return self.last
             p = p.next
             if p == self.last.next:
-                print(item, "The given node is not present in the list")
-                break
+                return IndexError("Index is not found")
 
     def deleteNode(self, last, key):
         if last == None:
