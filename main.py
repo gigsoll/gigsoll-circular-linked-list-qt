@@ -113,6 +113,14 @@ class Ui(QWidget):
             table.horizontalHeader().setStretchLastSection(True)
             for i in range(len(data1)):
                 table.setItem(i, 0, QTableWidgetItem(str(data1[i])))
+        else:
+            table.setRowCount(len(data1))
+            table.setColumnCount(2)
+            table.horizontalHeader().hide()
+            table.horizontalHeader().setStretchLastSection(True)
+            for i in range(len(data1)):
+                table.setItem(i, 0, QTableWidgetItem(str(data1[i])))
+                table.setItem(i, 1, QTableWidgetItem(str(data2[i])))
 
 def main():
     app = QApplication(sys.argv)
