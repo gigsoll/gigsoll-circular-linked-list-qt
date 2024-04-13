@@ -104,13 +104,13 @@ class CircularLinkedList:
             match way:
                 case "index":
                     if counter == index:
-                        return f"Елемент з індексом {index} має значення {newNode.data}"
+                        return newNode.data
                 case "key":
                     if newNode.data == key:
-                        return f"Елемент зі значенням {key} має індекс {counter}"
+                        return counter
                 case "index and key":
                     if newNode.data == key and counter == index:
-                        return f"Елемент з індексом {index} та значенням {key} знайдено"
+                        return True
             newNode = newNode.next
             if newNode == self.last.next:
-                return "Пошук не вдався"
+                return None

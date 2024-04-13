@@ -38,11 +38,23 @@ class Ui(QWidget):
         index = self.leIndex.text()
 
         if data != "" and index == "":
-            self.leResult.setText(self.cll.search(0, data, "key"))
+            searchResult = self.cll.search(0, data, "key")
+            if searchResult == None:
+                self.leResult.setText(f"Елемент з зі значенням {data} не знайдено")
+            else:
+                self.leResult.setText(f"Елемент зі значенням {data} має індекс {searchResult}")
         elif data == "" and index != "":
-            self.leResult.setText(self.cll.search(int(index), 0, "index"))
+            searchResult = self.cll.search(int(index), 0, "index")
+            if searchResult == None:
+                self.leResult.setText(f"Елемент з індексом {index} не знайдено")
+            else:
+                self.leResult.setText(f"Елемент з індексом {index} має значення {searchResult}")
         elif data != "" and index != "":
-            self.leResult.setText(self.cll.search(int(index), data, "index and key"))
+            searchResult = self.cll.search(int(index), data, "index and key")
+            if searchResult == True:
+                self.leResult.setText(f"Елемент з індексом {index} та значенням {data} знайдено")
+            else:
+                self.leResult.setText(f"Елемент з індексом {index} та значенням {data} не знайдено")
 
 
 
