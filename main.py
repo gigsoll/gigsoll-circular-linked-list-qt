@@ -1,6 +1,7 @@
 import sys
 import random
 from linkedList import Node
+from multimethod import multimethod
 from linkedList import CircularLinkedList
 from PyQt6.QtWidgets import *
 from PyQt6 import uic
@@ -34,7 +35,7 @@ class Ui(QWidget):
         index = int(self.leIndex.text())     
         
         self.cll.addAfter(data, index)
-        self.FillTables(self.cll.traverse(), [], self.table)
+        self.FillTablesOne(self.cll.traverse(), self.table)
 
     def pbDelete_click(self):
         match self.cbList.currentText():
@@ -47,7 +48,7 @@ class Ui(QWidget):
 
         index = int(self.leIndex.text())
         self.cll.deleteNode(index)
-        self.FillTables(self.cll.traverse(), [], self.table)
+        self.FillTablesOne(self.cll.traverse(), self.table)
 
     def pbFind_click(self):
         match self.cbList.currentText():
@@ -83,11 +84,15 @@ class Ui(QWidget):
         self.GenerateTickets(5)
         students = self.students.traverse()
         tickets = self.tickets.traverse()
-        self.FillTables(students, [], self.tbStudents)
-        self.FillTables(tickets, [],self.tbTicket)
+        self.FillTablesOne(students, self.tbStudents)
+        self.FillTablesOne(tickets, self.tbTicket)
 
     def pbGiveTickets_click(self):
         print("Give Tickets")
+        students = self.students.traverse()
+        tickets = self.tickets.traverseNumber(len(students))
+        print(tickets)
+        self.FillTablesTwo(students, tickets, self.tbResult)
 
     def GenerateNames(self, length):
         names = ["Андрій", "Ярослав", "Олександр", "Михайло", "Богдан", "Олена", "Катерина", "Марія", "Анна", "Наталія"]
@@ -105,22 +110,22 @@ class Ui(QWidget):
             else:
                 self.tickets.addAtEnd(str(random.randint(1000, 10000)))
 
-    def FillTables(self, data1, data2, table):
-        if table == self.tbStudents or self.tbTicket:
-            table.setRowCount(len(data1))
+    def FillTablesOne(self, data, table):
+            table.setRowCount(len(data))
             table.setColumnCount(1)
             table.horizontalHeader().hide()
             table.horizontalHeader().setStretchLastSection(True)
-            for i in range(len(data1)):
-                table.setItem(i, 0, QTableWidgetItem(str(data1[i])))
-        else:
-            table.setRowCount(len(data1))
-            table.setColumnCount(2)
-            table.horizontalHeader().hide()
-            table.horizontalHeader().setStretchLastSection(True)
-            for i in range(len(data1)):
-                table.setItem(i, 0, QTableWidgetItem(str(data1[i])))
-                table.setItem(i, 1, QTableWidgetItem(str(data2[i])))
+            for i in range(len(data)):
+                table.setItem(i, 0, QTableWidgetItem(str(data[i])))
+
+    def FillTablesTwo(self, data1, data2, table):
+        table.setRowCount(len(data1))
+        table.setColumnCount(2)
+        table.horizontalHeader().hide()
+        table.horizontalHeader().setStretchLastSection(True)
+        for i in range(len(data1)):
+            table.setItem(i, 0, QTableWidgetItem(str(data1[i])))
+            table.setItem(i, 1, QTableWidgetItem(str(data2[i])))
 
 def main():
     app = QApplication(sys.argv)
