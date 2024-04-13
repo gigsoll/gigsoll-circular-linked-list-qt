@@ -55,7 +55,7 @@
        <item>
         <widget class="QPushButton" name="pbAdd">
          <property name="text">
-          <string>Додати</string>
+          <string>Додати після</string>
          </property>
         </widget>
        </item>

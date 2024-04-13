@@ -22,7 +22,19 @@ class Ui(QWidget):
         self.tickets = CircularLinkedList()
 
     def pbAdd_click(self):
-        print("Add")
+        match self.cbList.currentText():
+            case "Учні":
+                self.cll = self.students
+                self.table = self.tbStudents
+            case "Білети":
+                self.cll = self.tickets
+                self.table = self.tbTicket
+        
+        data = self.leData.text()
+        index = int(self.leIndex.text())     
+        
+        self.cll.addAfter(data, index)
+        self.FillTables(self.cll.traverse(), [], self.table)
 
     def pbDelete_click(self):
         print("Delete")
@@ -55,9 +67,6 @@ class Ui(QWidget):
                 self.leResult.setText(f"Елемент з індексом {index} та значенням {data} знайдено")
             else:
                 self.leResult.setText(f"Елемент з індексом {index} та значенням {data} не знайдено")
-
-
-
 
     def pbGenerate_click(self):
         self.GenerateNames(10)
