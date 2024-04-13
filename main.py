@@ -35,7 +35,7 @@ class Ui(QWidget):
         index = int(self.leIndex.text())     
         
         self.cll.addAfter(data, index)
-        self.FillTablesOne(self.cll.traverse(), self.table)
+        self.FillTables(self.cll.traverse(), self.table)
 
     def pbDelete_click(self):
         match self.cbList.currentText():
@@ -48,7 +48,7 @@ class Ui(QWidget):
 
         index = int(self.leIndex.text())
         self.cll.deleteNode(index)
-        self.FillTablesOne(self.cll.traverse(), self.table)
+        self.FillTables(self.cll.traverse(), self.table)
 
     def pbFind_click(self):
         match self.cbList.currentText():
@@ -84,15 +84,13 @@ class Ui(QWidget):
         self.GenerateTickets(5)
         students = self.students.traverse()
         tickets = self.tickets.traverse()
-        self.FillTablesOne(students, self.tbStudents)
-        self.FillTablesOne(tickets, self.tbTicket)
+        self.FillTables(students, self.tbStudents)
+        self.FillTables(tickets, self.tbTicket)
 
     def pbGiveTickets_click(self):
-        print("Give Tickets")
         students = self.students.traverse()
         tickets = self.tickets.traverseNumber(len(students))
-        print(tickets)
-        self.FillTablesTwo(students, tickets, self.tbResult)
+        self.FillTables(students, tickets, self.tbResult)
 
     def GenerateNames(self, length):
         names = ["Андрій", "Ярослав", "Олександр", "Михайло", "Богдан", "Олена", "Катерина", "Марія", "Анна", "Наталія"]
@@ -110,7 +108,8 @@ class Ui(QWidget):
             else:
                 self.tickets.addAtEnd(str(random.randint(1000, 10000)))
 
-    def FillTablesOne(self, data, table):
+    @multimethod
+    def FillTables(self, data: list, table: QTableWidget):
             table.setRowCount(len(data))
             table.setColumnCount(1)
             table.horizontalHeader().hide()
@@ -118,7 +117,8 @@ class Ui(QWidget):
             for i in range(len(data)):
                 table.setItem(i, 0, QTableWidgetItem(str(data[i])))
 
-    def FillTablesTwo(self, data1, data2, table):
+    @multimethod
+    def FillTables(self, data1: list, data2: list, table: QTableWidget):
         table.setRowCount(len(data1))
         table.setColumnCount(2)
         table.horizontalHeader().hide()
