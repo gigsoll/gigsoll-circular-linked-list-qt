@@ -37,7 +37,17 @@ class Ui(QWidget):
         self.FillTables(self.cll.traverse(), [], self.table)
 
     def pbDelete_click(self):
-        print("Delete")
+        match self.cbList.currentText():
+            case "Учні":
+                self.cll = self.students
+                self.table = self.tbStudents
+            case "Білети":
+                self.cll = self.tickets
+                self.table = self.tbTicket
+
+        index = int(self.leIndex.text())
+        self.cll.deleteNode(index)
+        self.FillTables(self.cll.traverse(), [], self.table)
 
     def pbFind_click(self):
         match self.cbList.currentText():
