@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>907</width>
-    <height>454</height>
+    <height>506</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Лабораторна робота 3</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_5">
+  <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,5,1">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
@@ -97,13 +97,25 @@
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QLabel" name="lblStudents">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Студенти</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QTableWidget" name="tbStudents"/>
+        <widget class="QTableWidget" name="tbStudents">
+         <attribute name="horizontalHeaderCascadingSectionResizes">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>200</number>
+         </attribute>
+        </widget>
        </item>
       </layout>
      </item>
@@ -111,13 +123,22 @@
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
         <widget class="QLabel" name="lblTickets">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Номери білетів</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QTableWidget" name="tbTicket"/>
+        <widget class="QTableWidget" name="tbTicket">
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>200</number>
+         </attribute>
+        </widget>
        </item>
       </layout>
      </item>
@@ -125,17 +146,33 @@
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
         <widget class="QLabel" name="lblResult">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Результат</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QTableWidget" name="tbResult"/>
+        <widget class="QTableWidget" name="tbResult">
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>400</number>
+         </attribute>
+        </widget>
        </item>
       </layout>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QTextEdit" name="leResult">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
