@@ -46,24 +46,33 @@ class CircularLinkedList:
             if p == self.last.next:
                 return IndexError("Index is not found")
 
-    def deleteNode(self, last, key):
-        if last == None:
-            return
-        if (last).data == key and (last).next == last:
-            last = None   
-        temp = last
-        d = None
-        if (last).data == key:
-            while temp.next != last:
-                temp = temp.next
-            temp.next = (last).next
-            last = temp.next
-        while temp.next != last and temp.next.data != key:
-            temp = temp.next
-        if temp.next.data == key:
-            d = temp.next
-            temp.next = d.next
-        return last
+    def deleteNode(self, index):
+        if self.last is None:
+            return IndexError("List is empty")
+        if index == 0:
+            if self.last.next == self.last:
+                self.last = None
+                return
+            else:
+                self.last.next = self.last.next.next
+                return
+        current = self.last.next
+        prev = None
+        counter = -1
+        while current:
+            counter += 1
+            if counter == index:
+                if current == self.last:
+                    self.last = prev
+                    prev.next = current.next
+                else:
+                    prev.next = current.next
+                return
+            prev = current
+            current = current.next
+            if current == self.last.next:
+                break
+        raise IndexError("Index out of range")
 
     def traverse(self):
         nodeData = []
