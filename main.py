@@ -28,7 +28,24 @@ class Ui(QWidget):
         print("Delete")
 
     def pbFind_click(self):
-        print("Find")
+        match self.cbList.currentText():
+            case "Учні":
+                self.cll = self.students
+            case "Білети":
+                self.cll = self.tickets
+        
+        data = self.leData.text()
+        index = self.leIndex.text()
+
+        if data != "" and index == "":
+            self.leResult.setText(self.cll.search(0, data, "key"))
+        elif data == "" and index != "":
+            self.leResult.setText(self.cll.search(int(index), 0, "index"))
+        elif data != "" and index != "":
+            self.leResult.setText(self.cll.search(int(index), data, "index and key"))
+
+
+
 
     def pbGenerate_click(self):
         self.GenerateNames(10)
@@ -53,9 +70,9 @@ class Ui(QWidget):
     def GenerateTickets(self, length):
         for i in range(length):
             if i == 0:
-                self.tickets.addToEmpty(random.randint(1000, 10000))
+                self.tickets.addToEmpty(str(random.randint(1000, 10000)))
             else:
-                self.tickets.addAtEnd(random.randint(1000, 10000))
+                self.tickets.addAtEnd(str(random.randint(1000, 10000)))
 
     def FillTables(self, data1, data2, table):
         if table == self.tbStudents or self.tbTicket:
