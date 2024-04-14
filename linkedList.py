@@ -28,7 +28,7 @@ class CircularLinkedList:
 
     def addAfter(self, data, index):
         if self.last == None:
-            self.addToEmpty(data)
+            return self.addToEmpty(data)
         newNode = Node(data)
         p = self.last.next
         counter = -1
@@ -42,8 +42,6 @@ class CircularLinkedList:
                     return self.last
                 else:
                     return self.last
-            p = p.next
-            if p == self.last.next:
                 return IndexError("Index is not found")
 
     def deleteNode(self, index):
@@ -71,8 +69,7 @@ class CircularLinkedList:
             prev = current
             current = current.next
             if current == self.last.next:
-                break
-        raise IndexError("Index out of range")
+                return IndexError("Index out of range")
 
     def traverse(self):
         nodeData = []
