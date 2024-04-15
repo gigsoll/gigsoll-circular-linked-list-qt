@@ -27,22 +27,21 @@ class CircularLinkedList:
         return self.last
 
     def addAfter(self, data, index):
-        if self.last == None:
+        if self.last is None:
             return self.addToEmpty(data)
         newNode = Node(data)
-        p = self.last.next
-        counter = -1
-        while p:
-            counter += 1
-            if counter == index:
-                newNode.next = p.next
-                p.next = newNode
-                if p == self.last:
-                    self.last = newNode
-                    return self.last
-                else:
-                    return self.last
-                return IndexError("Index is not found")
+        current = self.last.next
+        i = 0
+        while i < index:
+            current = current.next
+            i += 1
+            if current == self.last.next:
+                raise IndexError("Index is out of range")
+        newNode.next = current.next
+        current.next = newNode
+        if current == self.last:
+            self.last = newNode
+        return self.last
 
     def deleteNode(self, index):
         if self.last is None:
