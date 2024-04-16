@@ -13,7 +13,8 @@ class Ui(QWidget):
         self.show()
         self.cbList.addItems({"Учні", "Білети"})
 
-        self.pbAddBefore.clicked.connect(self.pbAdd_click)
+        self.pbAddBefore.clicked.connect(self.pbAddBefore_click)
+        self.pbAddAfter.clicked.connect(self.pbAddAfter_click)
         self.pbDelete.clicked.connect(self.pbDelete_click)
         self.pbFind.clicked.connect(self.pbFind_click)
         self.pbGenerate.clicked.connect(self.pbGenerate_click)
@@ -29,12 +30,20 @@ class Ui(QWidget):
             case "Білети":
                 return [self.tickets, self.tbTicket]
 
-    def pbAdd_click(self):
+    def pbAddBefore_click(self):
         workWith = self.GetTable()
         data = self.leData.text()
         index = int(self.leIndex.text())     
         
         workWith[0].addBefore(data, index)
+        self.FillTables(workWith[0].traverse(), workWith[1])
+
+    def pbAddAfter_click(self):
+        workWith = self.GetTable()
+        data = self.leData.text()
+        index = int(self.leIndex.text())
+
+        workWith[0].addAfter(data, index)
         self.FillTables(workWith[0].traverse(), workWith[1])
 
     def pbDelete_click(self):        
