@@ -13,7 +13,7 @@ class Ui(QWidget):
         self.show()
         self.cbList.addItems({"Учні", "Білети"})
 
-        self.pbAdd.clicked.connect(self.pbAdd_click)
+        self.pbAddBefore.clicked.connect(self.pbAdd_click)
         self.pbDelete.clicked.connect(self.pbDelete_click)
         self.pbFind.clicked.connect(self.pbFind_click)
         self.pbGenerate.clicked.connect(self.pbGenerate_click)
@@ -22,58 +22,46 @@ class Ui(QWidget):
         self.students = CircularLinkedList()
         self.tickets = CircularLinkedList()
 
-    def pbAdd_click(self):
+    def GetTable(self):
         match self.cbList.currentText():
             case "Учні":
-                self.cll = self.students
-                self.table = self.tbStudents
+                return [self.students, self.tbStudents]
             case "Білети":
-                self.cll = self.tickets
-                self.table = self.tbTicket
-        
+                return [self.tickets, self.tbTicket]
+
+    def pbAdd_click(self):
+        workWith = self.GetTable()
         data = self.leData.text()
         index = int(self.leIndex.text())     
         
-        self.cll.addAfter(data, index)
-        self.FillTables(self.cll.traverse(), self.table)
+        workWith[0].addBefore(data, index)
+        self.FillTables(workWith[0].traverse(), workWith[1])
 
-    def pbDelete_click(self):
-        match self.cbList.currentText():
-            case "Учні":
-                self.cll = self.students
-                self.table = self.tbStudents
-            case "Білети":
-                self.cll = self.tickets
-                self.table = self.tbTicket
-
+    def pbDelete_click(self):        
+        workWith = self.GetTable()
         index = int(self.leIndex.text())
-        self.cll.deleteNode(index)
-        self.FillTables(self.cll.traverse(), self.table)
+        workWith[0].deleteNode(index)
+        self.FillTables(workWith[0].traverse(), workWith[1])
 
     def pbFind_click(self):
-        match self.cbList.currentText():
-            case "Учні":
-                self.cll = self.students
-            case "Білети":
-                self.cll = self.tickets
-        
+        workWith = self.GetTable()
         data = self.leData.text()
         index = self.leIndex.text()
 
         if data != "" and index == "":
-            searchResult = self.cll.search(0, data, "key")
+            searchResult = workWith[0].search(0, data, "key")
             if searchResult == None:
                 self.leResult.setText(f"Елемент з зі значенням {data} не знайдено")
             else:
                 self.leResult.setText(f"Елемент зі значенням {data} має індекс {searchResult}")
         elif data == "" and index != "":
-            searchResult = self.cll.search(int(index), 0, "index")
+            searchResult = workWith[0].search(int(index), 0, "index")
             if searchResult == None:
                 self.leResult.setText(f"Елемент з індексом {index} не знайдено")
             else:
                 self.leResult.setText(f"Елемент з індексом {index} має значення {searchResult}")
         elif data != "" and index != "":
-            searchResult = self.cll.search(int(index), data, "index and key")
+            searchResult = workWith[0].search(int(index), data, "index and key")
             if searchResult == True:
                 self.leResult.setText(f"Елемент з індексом {index} та значенням {data} знайдено")
             else:

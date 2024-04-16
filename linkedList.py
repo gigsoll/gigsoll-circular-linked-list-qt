@@ -42,6 +42,26 @@ class CircularLinkedList:
         if current == self.last:
             self.last = newNode
         return self.last
+    
+    def addBefore(self, data, index):
+        if self.last is None:
+            return self.addToEmpty(data)
+        newNode = Node(data)
+        if index == 0:
+            newNode.next = self.last.next
+            self.last.next = newNode
+            return self
+        current = self.last.next
+        prev = None
+        i = 0
+        while i < index:
+            prev = current
+            current = current.next
+            i += 1
+            if current == self.last.next:
+                raise IndexError("Index is out of range")
+        newNode.next = current
+        prev.next = newNode
 
     def deleteNode(self, index):
         if self.last is None:

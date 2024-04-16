@@ -53,9 +53,16 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QPushButton" name="pbAdd">
+        <widget class="QPushButton" name="pbAddAfter">
          <property name="text">
-          <string>Додати</string>
+          <string>Додати після</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pbAddBefore">
+         <property name="text">
+          <string>Додати перед</string>
          </property>
         </widget>
        </item>
