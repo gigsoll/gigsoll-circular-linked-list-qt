@@ -6,3 +6,5 @@ __pycache__/
 *.odt#
 *.odt
 *.drawio
+*.zip
+*.pdf
