@@ -100,13 +100,24 @@ class CircularLinkedList:
             newNode = newNode.next
             if newNode == self.last.next:
                 return nodeData
+            
+    def getCount(self):
+        if self.last == None:
+            return 0
+        newNode = self.last.next
+        counter = 0
+        while newNode:
+            counter += 1
+            newNode = newNode.next
+            if newNode == self.last.next:
+                return counter
     
-    def traverseNumber(self, number):
+    def traverseNumber(self, step):
         nodeData = []
         if self.last == None:
             return nodeData
         newNode = self.last.next
-        counter = 0
+        counter = 0                     
         while counter < number:
             nodeData.append(newNode.data)
             newNode = newNode.next
