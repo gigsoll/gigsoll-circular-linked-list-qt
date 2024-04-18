@@ -112,7 +112,7 @@ class CircularLinkedList:
             if newNode == self.last.next:
                 return counter
     
-    def traverseWithStep(self, step):
+    def traverseWithStep(self, step, returnLength):
         listLength = self.getCount()
         if listLength % 2 == 0:
             return ValueError("index is even so it is not possible to traverse with step")
@@ -122,7 +122,7 @@ class CircularLinkedList:
         gapSizeCount = -(listLength - 1) 
         elements = []
         newNode = self.last.next
-        while affectedElementsCount < listLength:
+        while affectedElementsCount < returnLength:
             gapSizeCount += 1
             newNode = newNode.next
             if gapSizeCount == step:
