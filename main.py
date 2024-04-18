@@ -77,17 +77,20 @@ class Ui(QWidget):
                 self.leResult.setText(f"Елемент з індексом {index} та значенням {data} не знайдено")
 
     def pbGenerate_click(self):
-        self.GenerateNames(10)
-        self.GenerateTickets(5)
+        self.GenerateNames(15)
+        self.GenerateTickets(7)
         students = self.students.traverse()
         tickets = self.tickets.traverse()
         self.FillTables(students, self.tbStudents)
         self.FillTables(tickets, self.tbTicket)
 
     def pbGiveTickets_click(self):
-        students = self.students.traverse()
-        tickets = self.tickets.traverseNumber(len(students))
-        self.FillTables(students, tickets, self.tbResult)
+        studentsStep = int(self.leStudentsStep.text())
+        ticketsStep = int(self.leTicketsStep.text()) 
+
+        students = self.students.traverseWithStep(studentsStep, self.students.getCount())
+        tickets = self.tickets.traverseWithStep(ticketsStep, self.students.getCount())
+        self.FillTables(students, tickets, self.tbResult, self.students.getCount())
 
     def GenerateNames(self, length):
         names = ["Андрій", "Ярослав", "Олександр", "Михайло", "Богдан", "Олена", "Катерина", "Марія", "Анна", "Наталія"]
@@ -115,12 +118,12 @@ class Ui(QWidget):
                 table.setItem(i, 0, QTableWidgetItem(str(data[i])))
 
     @multimethod
-    def FillTables(self, data1: list, data2: list, table: QTableWidget):
-        table.setRowCount(len(data1))
+    def FillTables(self, data1: list, data2: list, table: QTableWidget, rows):
+        table.setRowCount(rows)
         table.setColumnCount(2)
         table.horizontalHeader().hide()
         table.horizontalHeader().setStretchLastSection(True)
-        for i in range(len(data1)):
+        for i in range(rows):
             table.setItem(i, 0, QTableWidgetItem(str(data1[i])))
             table.setItem(i, 1, QTableWidgetItem(str(data2[i])))
 

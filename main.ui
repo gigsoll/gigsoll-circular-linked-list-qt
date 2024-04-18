@@ -6,14 +6,53 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>907</width>
-    <height>506</height>
+    <width>1000</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Лабораторна робота 3</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,5,1">
+  <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,5,1">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Крок білетів</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="leTicketsStep"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Крок студентів</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="leStudentsStep"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbGiveTickets">
+       <property name="text">
+        <string>Роздати білети</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
@@ -84,13 +123,6 @@
         <widget class="QPushButton" name="pbGenerate">
          <property name="text">
           <string>Згенерувати</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pbGiveTickets">
-         <property name="text">
-          <string>Роздати білети</string>
          </property>
         </widget>
        </item>
