@@ -112,17 +112,24 @@ class CircularLinkedList:
             if newNode == self.last.next:
                 return counter
     
-    def traverseNumber(self, step):
-        nodeData = []
-        if self.last == None:
-            return nodeData
+    def traverseWithStep(self, step):
+        listLength = self.getCount()
+        if listLength % 2 == 0:
+            return ValueError("index is even so it is not possible to traverse with step")
+        if step % listLength == 0:
+            return ValueError("step is causing infinite loop")
+        affectedElementsCount = 0
+        gapSizeCount = -(listLength - 1) 
+        elements = []
         newNode = self.last.next
-        counter = 0                     
-        while counter < number:
-            nodeData.append(newNode.data)
+        while affectedElementsCount < listLength:
+            gapSizeCount += 1
             newNode = newNode.next
-            counter += 1
-        return nodeData
+            if gapSizeCount == step:
+                elements.append(newNode.data)
+                gapSizeCount = 0
+                affectedElementsCount +=1
+        return elements
     
     def search(self, index, key, way):
         if self.last == None:
@@ -144,3 +151,16 @@ class CircularLinkedList:
             newNode = newNode.next
             if newNode == self.last.next:
                 return None
+
+
+
+cll = CircularLinkedList()
+cll.addToEmpty(3)
+cll.addAtEnd(4)
+cll.addAtEnd(7)
+cll.addAtEnd(6)
+cll.addAtEnd(8)
+cll.addAtEnd(9)
+cll.addAtEnd(5)
+
+print(cll.traverseWithStep(7))
