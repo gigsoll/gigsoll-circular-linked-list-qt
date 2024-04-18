@@ -151,16 +151,3 @@ class CircularLinkedList:
             newNode = newNode.next
             if newNode == self.last.next:
                 return None
-
-
-
-cll = CircularLinkedList()
-cll.addToEmpty(3)
-cll.addAtEnd(4)
-cll.addAtEnd(7)
-cll.addAtEnd(6)
-cll.addAtEnd(8)
-cll.addAtEnd(9)
-cll.addAtEnd(5)
-
-print(cll.traverseWithStep(7))
